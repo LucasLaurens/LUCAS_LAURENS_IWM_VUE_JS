@@ -1,5 +1,5 @@
 <template>
-	<div class="border border-black rounded m-2 md:flex justify-between">
+	<div class="rounded m-2 md:flex justify-between">
 		<h3>{{lastName}}</h3>
 		<p><span style="font-weight: bold;">position</span> : {{playerData.position}}</p>
 		<div class="flex">
