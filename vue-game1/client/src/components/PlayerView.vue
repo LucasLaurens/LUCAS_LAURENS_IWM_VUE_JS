@@ -127,17 +127,17 @@ export default {
 		background: #444;
 	}
 	.red {
-		background-color: red;
+		background-color: #c0392b;
 	}
 	.blue {
-		background-color: blue;
+		background-color: #2980b9;
 	}
 	.btn-show {
 		width: 10rem;
 	}
 	.btn-show button {
 		color: #fff !important;
-		background: #34c434 !important;
+		background: #1abc9c !important;
 	}
 	.list-errors li {
 		background: #ff5555;

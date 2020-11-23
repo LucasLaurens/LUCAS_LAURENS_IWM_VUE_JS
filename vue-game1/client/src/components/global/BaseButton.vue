@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<button class="btn-default" :style="[(index%2==0)? 'color: red;': 'color: blue;']">
+		<button class="btn-default" :style="[(index%2==0)? 'color: #c0392b;': 'color: #2980b9;']">
 			{{ title }}
 		</button>
 	</div>
