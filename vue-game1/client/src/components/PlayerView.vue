@@ -4,7 +4,7 @@
 		<base-button
 			class="btn-show m-2"
 			title="Remove All"
-			@click="() => {list = []}"
+			@click="removeAll"
 		/>
 		<player-card
 			v-show="datas && players.length > 0"
@@ -71,6 +71,10 @@ export default {
 			if (this.counter == 0) {
 				this.isCompleted = false;
 			}
+		},
+		removeAll: function() {
+			this.list = [];
+			this.counter = 0;
 		},
 		playerPicked: function(player) {
 			return (this.list.find(item => item.name === player.name)) ? 'grey greyAdd' : 'greyRemove'
