@@ -1,11 +1,7 @@
 <template>
 	<div class="border border-black rounded m-2 md:flex justify-between">
 		<h3>{{lastName}}</h3>
-		<p>
-			<span style="font-weight: bold;">number</span> : {{playerData.number}} -
-			<span style="font-weight: bold;">position</span> : {{playerData.position}} -
-			<span style="font-weight: bold;">country</span> : {{playerData.country}}
-		</p>
+		<p><span style="font-weight: bold;">position</span> : {{playerData.position}}</p>
 		<div class="flex">
 			<base-button
 				class="add mr-2"

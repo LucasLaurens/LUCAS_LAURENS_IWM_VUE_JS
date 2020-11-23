@@ -12,15 +12,20 @@
 			@remove-data="(player) => removeOne(player)"
 		/>
 		<p class="m-2">Ma liste contient <span style="font-weight: bold;">{{counter}}</span> <span v-if="counter > 1">joueurs</span><span v-else>joueur</span></p>
+		<selection-box
+			:listPlayers="list"
+		/>
 	</div>
 </template>
 <script>
 import datas from './../data/players.json'
 import PlayerCard from './PlayerCard'
+import SelectionBox from './SelectionBox'
 export default {
 	name: "player-view",
 	components: {
-		PlayerCard
+		PlayerCard,
+		SelectionBox
 	},
 	data() {
 		return {
