@@ -9,17 +9,15 @@
 			:playerData="player"
 			:index="i"
 			@add-data="(data) => addOne(data)"
-			@remove-data="(index) => removeOne(index)"
+			@remove-data="(player) => removeOne(player)"
 		/>
-		<p class="m-2">Ma liste contient <span style="font-weight: bold;">{{counter}}</span> joueur(s)</p>
+		<p class="m-2">Ma liste contient <span style="font-weight: bold;">{{counter}}</span> <span v-if="counter > 1">joueurs</span><span v-else>joueur</span></p>
 	</div>
 </template>
 <script>
 import datas from './../data/players.json'
 import PlayerCard from './PlayerCard'
 export default {
-  watch: {
-  },
 	name: "player-view",
 	components: {
 		PlayerCard
@@ -36,13 +34,13 @@ export default {
 			if (!this.list.includes(player)) {
 				this.list = [...this.list, player];
 			}
-			this.counter = this.list.length
+			this.counter = this.list.length;
 		},
-		removeOne: function(index) {
-			this.list = this.list.filter((item, i) => {
-				return i != index
+		removeOne: function(player) {
+			this.list = this.list.filter((item) => {
+				return item.name != player.name
 			});
-			this.counter = this.list.length
+			this.counter = this.list.length;
 		},
 		playerPicked: function(player) {
 			return (this.list.find(item => item.name === player.name)) ? 'grey' : ''

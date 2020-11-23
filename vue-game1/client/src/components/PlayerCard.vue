@@ -17,7 +17,7 @@
 				class="remove"
 				title="Remove One"
 				:index="index"
-				@click="removeData(index)"
+				@click="removeData(playerData)"
 			/>
 		</div>
 	</div>
@@ -34,8 +34,8 @@ export default {
 		addData: function (player) {
 			this.$emit('add-data', player)
 		},
-		removeData: function (index) {
-			this.$emit('remove-data', index)
+		removeData: function (player) {
+			this.$emit('remove-data', player)
 		}
 	},
 	computed: {
