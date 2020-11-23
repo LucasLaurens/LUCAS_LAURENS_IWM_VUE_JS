@@ -16,6 +16,11 @@
 				</tr>
 			</tbody>
 		</table>
+		<base-button
+			class="m-2 btn-show"
+			title="Cacher ma selection"
+			@click="getComplete"
+		/>
 	</div>
 </template>
 <script>
@@ -23,6 +28,11 @@ export default {
 	name: "selection-box",
 	props: {
 		listPlayers: Array
-	}
+	},
+	methods: {
+		getComplete: function() {
+			this.$emit('is-completed', false);
+		}
+	},
 }
 </script>

@@ -11,9 +11,23 @@
 			@add-data="(data) => addOne(data)"
 			@remove-data="(player) => removeOne(player)"
 		/>
+		<div class="m-2">
+			<ul class="list-errors">
+				<li v-for="(msg, i) in errorMessages" :key="i">
+					{{msg}}
+				</li>
+			</ul>
+		</div>
 		<p class="m-2">Ma liste contient <span style="font-weight: bold;">{{counter}}</span> <span v-if="counter > 1">joueurs</span><span v-else>joueur</span></p>
 		<selection-box
+			v-show="list.length > 0 && isCompleted != false"
+			@is-completed="(hide) => {isCompleted = hide}"
 			:listPlayers="list"
+		/>
+		<base-button
+			class="btn-show m-2"
+			title="Montrer ma selection"
+			@click="getComplete"
 		/>
 	</div>
 </template>
@@ -31,7 +45,9 @@ export default {
 		return {
 			datas: datas,
 			counter: 0,
-			list: []
+			isCompleted: false,
+			list: [],
+			errorMessages: []
 		}
 	},
 	methods: {
@@ -49,6 +65,17 @@ export default {
 		},
 		playerPicked: function(player) {
 			return (this.list.find(item => item.name === player.name)) ? 'grey greyAdd' : 'greyRemove'
+		},
+		getComplete() {
+			this.errorMessages = []
+			if (this.list.length > 0) {
+				this.isCompleted = true;
+			} else {
+				const error = "Vous n'avez pas encore sélectionné de joueurs"
+				if(!this.errorMessages.includes(error)) {
+					this.errorMessages.push(error)
+				}
+			}
 		}
 	},
 	computed: {
@@ -95,5 +122,19 @@ export default {
 	}
 	.blue {
 		background-color: blue;
+	}
+	.btn-show {
+		width: 10rem;
+	}
+	.btn-show button {
+		color: #fff !important;
+		background: #34c434 !important;
+	}
+	.list-errors li {
+		background: #ff5555;
+		color: #fff;
+		padding: 1%;
+		border-radius: 6px;
+		border: 2px solid #ff0000;
 	}
 </style>
