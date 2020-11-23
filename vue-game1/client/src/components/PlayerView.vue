@@ -110,11 +110,11 @@ export default {
 		padding: 1%;
 	}
 	.grey {
-		background-color: grey !important;
+		background-color: #34495e !important;
 	}
 	.greyAdd .add button, .greyRemove .remove button {
 		position: relative;
-		background-color: #444 !important;
+		background-color: #34495e !important;
 		transition: .3s ease-in;
 	}
 	.greyAdd .add button::before, .greyRemove .remove button::before {
@@ -124,7 +124,7 @@ export default {
 		width: 100%;
 		top: 50%;
 		left: 0;
-		background: #444;
+		background: #34495e;
 	}
 	.red {
 		background-color: #c0392b;
