@@ -1,12 +1,16 @@
 <template>
   <div id="application">
-    <p>started !!</p>
+    <player-view></player-view>
   </div>
 </template>
 
 <script>
+import PlayerView from './components/PlayerView'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    PlayerView
+  }
 }
 </script>
 
