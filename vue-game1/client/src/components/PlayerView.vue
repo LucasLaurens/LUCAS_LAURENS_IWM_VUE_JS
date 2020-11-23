@@ -3,7 +3,7 @@
 		<h1 class="first-title">{{teamName}}</h1>
 		<base-button
 			class="btn-show m-2"
-			title="remove all"
+			title="Remove All"
 			@click="() => {list = []}"
 		/>
 		<player-card
@@ -30,8 +30,9 @@
 			:listPlayers="list"
 		/>
 		<base-button
+			v-show="isCompleted == false"
 			class="btn-show m-2"
-			title="Montrer ma selection"
+			title="Montrer Ma Selection"
 			@click="getComplete"
 		/>
 	</div>
@@ -67,6 +68,9 @@ export default {
 				return item.name != player.name
 			});
 			this.counter = this.list.length;
+			if (this.counter == 0) {
+				this.isCompleted = false;
+			}
 		},
 		playerPicked: function(player) {
 			return (this.list.find(item => item.name === player.name)) ? 'grey greyAdd' : 'greyRemove'

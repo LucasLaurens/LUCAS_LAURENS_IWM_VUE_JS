@@ -18,7 +18,7 @@
 		</table>
 		<base-button
 			class="m-2 btn-show"
-			title="Cacher ma selection"
+			title="Cacher Ma Selection"
 			@click="getComplete"
 		/>
 	</div>
