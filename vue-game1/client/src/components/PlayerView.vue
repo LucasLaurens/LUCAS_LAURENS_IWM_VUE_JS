@@ -58,12 +58,14 @@ export default {
 	},
 	methods: {
 		addOne: function(player) {
+			// Add an item in a list if doesn't exist
 			if (!this.list.includes(player)) {
 				this.list = [...this.list, player];
 			}
 			this.counter = this.list.length;
 		},
 		removeOne: function(player) {
+			// Remove an item accordting to the name
 			this.list = this.list.filter((item) => {
 				return item.name != player.name
 			});
@@ -73,13 +75,16 @@ export default {
 			}
 		},
 		removeAll: function() {
+			// Remove all items in a list
 			this.list = [];
 			this.counter = 0;
 		},
 		playerPicked: function(player) {
+			// Get the color based on the player found
 			return (this.list.find(item => item.name === player.name)) ? 'grey greyAdd' : 'greyRemove'
 		},
 		getComplete() {
+			// Display selection list if is completed or not
 			this.errorMessages = []
 			if (this.list.length > 0) {
 				this.isCompleted = true;
