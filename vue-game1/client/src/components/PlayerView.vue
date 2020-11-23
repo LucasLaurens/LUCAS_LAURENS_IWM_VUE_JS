@@ -1,6 +1,11 @@
 <template>
 	<div id="player-view">
 		<h1 class="first-title">{{teamName}}</h1>
+		<base-button
+			class="btn-show m-2"
+			title="remove all"
+			@click="() => {list = []}"
+		/>
 		<player-card
 			v-show="datas && players.length > 0"
 			v-for="(player, i) in players" :key="i"
