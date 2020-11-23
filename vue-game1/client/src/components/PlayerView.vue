@@ -48,7 +48,7 @@ export default {
 			this.counter = this.list.length;
 		},
 		playerPicked: function(player) {
-			return (this.list.find(item => item.name === player.name)) ? 'grey' : ''
+			return (this.list.find(item => item.name === player.name)) ? 'grey greyAdd' : 'greyRemove'
 		}
 	},
 	computed: {
@@ -76,12 +76,12 @@ export default {
 	.grey {
 		background-color: grey !important;
 	}
-	.grey .add button {
+	.greyAdd .add button, .greyRemove .remove button {
 		position: relative;
 		background-color: #444 !important;
 		transition: .3s ease-in;
 	}
-	.grey .add button::before {
+	.greyAdd .add button::before, .greyRemove .remove button::before {
 		content: "";
 		position: absolute;
 		height: .25rem;
