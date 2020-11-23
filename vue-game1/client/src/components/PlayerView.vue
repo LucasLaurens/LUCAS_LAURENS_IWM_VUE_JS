@@ -11,6 +11,7 @@
 			@add-data="(data) => addOne(data)"
 			@remove-data="(index) => removeOne(index)"
 		/>
+		<p class="m-2">Ma liste contient <span style="font-weight: bold;">{{counter}}</span> joueur(s)</p>
 	</div>
 </template>
 <script>
@@ -26,6 +27,7 @@ export default {
 	data() {
 		return {
 			datas: datas,
+			counter: 0,
 			list: []
 		}
 	},
@@ -34,11 +36,13 @@ export default {
 			if (!this.list.includes(player)) {
 				this.list = [...this.list, player];
 			}
+			this.counter = this.list.length
 		},
 		removeOne: function(index) {
 			this.list = this.list.filter((item, i) => {
 				return i != index
 			});
+			this.counter = this.list.length
 		},
 		playerPicked: function(player) {
 			return (this.list.find(item => item.name === player.name)) ? 'grey' : ''
