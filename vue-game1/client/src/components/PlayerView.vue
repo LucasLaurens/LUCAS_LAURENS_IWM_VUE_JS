@@ -1,46 +1,45 @@
 <template>
 	<div id="player-view" class="container mx-auto">
-		<h1 class="first-title">{{teamName}}</h1>
-		<!-- First part -->
-		<base-button
-			class="btn-show m-2"
-			title="Remove All"
-			@click="removeAll"
-		/>
-		<player-card
-			v-show="datas && players.length > 0"
-			v-for="(player, i) in players" :key="i"
-			class="item-list"
-			:class="[(i%2==0) ? '' : 'blue', playerPicked(player)]"
-			:playerData="player"
-			:index="i"
-			@add-data="(data) => addOne(data)"
-			@remove-data="(player) => removeOne(player)"
-		/>
-
-		<!-- Pending -->
-
+		<div class="mb-4">
+			<h1 class="first-title">{{teamName}}</h1>
+			<!-- First part -->
+			<base-button
+				class="btn-show m-2"
+				title="Remove All"
+				@click="removeAll"
+			/>
+			<player-card
+				v-show="datas && players.length > 0"
+				v-for="(player, i) in players" :key="i"
+				class="item-list"
+				:class="[(i%2==0) ? '' : 'blue', playerPicked(player)]"
+				:playerData="player"
+				:index="i"
+				@add-data="(data) => addOne(data)"
+				@remove-data="(player) => removeOne(player)"
+			/>
+		</div>
 
 		<!-- Second part -->
-		<div class="m-2">
+		<div class="m-2 mt-4">
 			<ul class="list-errors">
 				<li v-for="(msg, i) in errorMessages" :key="i">
 					{{msg}}
 				</li>
 			</ul>
+			<p>Ma liste contient <span style="font-weight: bold;">{{counter}}</span> <span v-if="counter > 1">joueurs</span><span v-else>joueur</span></p>
+			<selection-box
+				v-show="list.length > 0 && isCompleted != false"
+				@is-completed="(hide) => {isCompleted = hide}"
+				:listPlayers="list"
+			/>
+			<base-button
+				v-show="isCompleted == false"
+				class="btn-show"
+				title="Montrer Ma Selection"
+				@click="getComplete"
+			/>
 		</div>
-		<p class="m-2">Ma liste contient <span style="font-weight: bold;">{{counter}}</span> <span v-if="counter > 1">joueurs</span><span v-else>joueur</span></p>
-		<selection-box
-			v-show="list.length > 0 && isCompleted != false"
-			@is-completed="(hide) => {isCompleted = hide}"
-			:listPlayers="list"
-		/>
-		<base-button
-			v-show="isCompleted == false"
-			class="btn-show m-2"
-			title="Montrer Ma Selection"
-			@click="getComplete"
-		/>
 	</div>
 </template>
 <script>
@@ -126,6 +125,7 @@ export default {
 		background-color: #1abc9c;
 	}
 	.grey {
+		color: #1abc9c !important;
 		background-color: #34495e !important;
 	}
 	.greyAdd .add button, .greyRemove .remove button {

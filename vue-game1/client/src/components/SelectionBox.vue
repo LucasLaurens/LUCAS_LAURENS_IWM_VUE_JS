@@ -5,7 +5,7 @@
 			:listPlayers="listPlayers"
 		/>
 		<base-button
-			class="m-2 btn-show"
+			class="btn-show"
 			title="Cacher Ma Selection"
 			@click="getComplete"
 		/>
