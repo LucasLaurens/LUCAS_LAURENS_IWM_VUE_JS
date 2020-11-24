@@ -17,7 +17,6 @@ export default {
 <style scoped>
 	button {
 		border-radius: 0.25rem;
-		background: #fff;
 		padding: 1%;
 		width: 10rem;
 		outline: none;
