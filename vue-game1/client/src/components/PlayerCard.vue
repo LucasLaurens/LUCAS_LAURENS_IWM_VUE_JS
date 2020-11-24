@@ -9,12 +9,6 @@
 				:index="index"
 				@click="addData(playerData)"
 			/>
-			<base-button
-				class="remove"
-				title="Remove One"
-				:index="index"
-				@click="removeData(playerData)"
-			/>
 		</div>
 	</div>
 </template>
@@ -29,9 +23,6 @@ export default {
 	methods: {
 		addData: function (player) {
 			this.$emit('add-data', player)
-		},
-		removeData: function (player) {
-			this.$emit('remove-data', player)
 		}
 	},
 	computed: {

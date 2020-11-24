@@ -1,6 +1,7 @@
-import { createApp } from 'vue'
-import router from './router'
-import App from './App.vue'
+import { createApp } from 'vue';
+import { store } from './store';
+import { router } from './router';
+import App from './App.vue';
 
 // Import Assets
 import './assets/style/main.css';
@@ -12,7 +13,8 @@ import BaseArray from './components/global/BaseArray';
 // Create The App
 const app = createApp(App);
 
-// Use Routes
+// Use Middleware
+app.use(store);
 app.use(router);
 
 // Use Elements

@@ -10,8 +10,7 @@ export default {
 	name: "base-button",
 	props: {
 		title: String,
-		index: Number,
-		clickMethod: Function
+		index: Number
 	}
 }
 </script>

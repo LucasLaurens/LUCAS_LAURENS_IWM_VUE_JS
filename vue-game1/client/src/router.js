@@ -6,12 +6,11 @@ import SelectionView from './screens/SelectionView'
 
 // Routes
 const routes = [
-	{ path: '/', component: PlayerView },
-	{ path: '/selection', component: SelectionView }
+	{ path: '/', name: 'players', component: PlayerView },
+	{ path: '/selection', name: 'selection', component: SelectionView }
 ];
-const router = createRouter({
+
+export const router = createRouter({
 	history: createWebHistory(),
 	routes
 })
-
-export default router;
