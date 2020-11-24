@@ -1,6 +1,7 @@
 <template>
-	<div id="player-view">
+	<div id="player-view" class="container mx-auto">
 		<h1 class="first-title">{{teamName}}</h1>
+		<!-- First part -->
 		<base-button
 			class="btn-show m-2"
 			title="Remove All"
@@ -10,12 +11,17 @@
 			v-show="datas && players.length > 0"
 			v-for="(player, i) in players" :key="i"
 			class="item-list"
-			:class="[(i%2==0) ? 'red' : 'blue', playerPicked(player)]"
+			:class="[(i%2==0) ? '' : 'blue', playerPicked(player)]"
 			:playerData="player"
 			:index="i"
 			@add-data="(data) => addOne(data)"
 			@remove-data="(player) => removeOne(player)"
 		/>
+
+		<!-- Pending -->
+
+
+		<!-- Second part -->
 		<div class="m-2">
 			<ul class="list-errors">
 				<li v-for="(msg, i) in errorMessages" :key="i">
@@ -117,6 +123,7 @@ export default {
 		text-align: left;
 		color: #fff;
 		padding: 1%;
+		background-color: #1abc9c;
 	}
 	.grey {
 		background-color: #34495e !important;
@@ -135,11 +142,9 @@ export default {
 		left: 0;
 		background: #34495e;
 	}
-	.red {
-		background-color: #c0392b;
-	}
 	.blue {
-		background-color: #2980b9;
+		background-color: #fff;
+		color: #1abc9c;
 	}
 	.btn-show {
 		width: 10rem;
