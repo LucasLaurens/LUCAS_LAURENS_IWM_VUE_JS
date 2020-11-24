@@ -1,15 +1,16 @@
 <template>
   <div id="main-view">
-    <player-view></player-view>
+    <div class="menu">
+      <router-link to="/">Players</router-link>
+      <router-link to="/selection">Selection</router-link>
+    </div>
+    <h1 class="first-title">Equipe : PSG</h1>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import PlayerView from './components/PlayerView'
 export default {
-  name: 'App',
-  components: {
-    PlayerView
-  }
+  name: 'App'
 }
 </script>

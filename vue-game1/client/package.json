@@ -14,7 +14,7 @@
     "postcss-loader": "^4.1.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
     "vue": "^3.0.0",
-    "vue-router": "^3.4.9"
+    "vue-router": "^4.0.0-rc.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

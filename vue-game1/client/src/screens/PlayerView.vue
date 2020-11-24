@@ -1,8 +1,7 @@
 <template>
 	<div id="player-view" class="container mx-auto">
 		<div class="mb-4">
-			<h1 class="first-title">{{teamName}}</h1>
-			<!-- First part -->
+			<h2 class="second-title">Players</h2>
 			<base-button
 				class="btn-show m-2"
 				title="Remove All"
@@ -19,38 +18,15 @@
 				@remove-data="(player) => removeOne(player)"
 			/>
 		</div>
-
-		<!-- Second part -->
-		<div class="m-2 mt-4">
-			<ul class="list-errors">
-				<li v-for="(msg, i) in errorMessages" :key="i">
-					{{msg}}
-				</li>
-			</ul>
-			<p>Ma liste contient <span style="font-weight: bold;">{{counter}}</span> <span v-if="counter > 1">joueurs</span><span v-else>joueur</span></p>
-			<selection-box
-				v-show="list.length > 0 && isCompleted != false"
-				@is-completed="(hide) => {isCompleted = hide}"
-				:listPlayers="list"
-			/>
-			<base-button
-				v-show="isCompleted == false"
-				class="btn-show"
-				title="Montrer Ma Selection"
-				@click="getComplete"
-			/>
-		</div>
 	</div>
 </template>
 <script>
 import datas from './../data/players.json'
-import PlayerCard from './PlayerCard'
-import SelectionBox from './SelectionBox'
+import PlayerCard from '../components/PlayerCard'
 export default {
 	name: "player-view",
 	components: {
-		PlayerCard,
-		SelectionBox
+		PlayerCard
 	},
 	data() {
 		return {
@@ -87,18 +63,6 @@ export default {
 		playerPicked: function(player) {
 			// Get the color based on the player found
 			return (this.list.find(item => item.name === player.name)) ? 'grey greyAdd' : 'greyRemove'
-		},
-		getComplete() {
-			// Display selection list if is completed or not
-			this.errorMessages = []
-			if (this.list.length > 0) {
-				this.isCompleted = true;
-			} else {
-				const error = "Vous n'avez pas encore sélectionné de joueurs"
-				if(!this.errorMessages.includes(error)) {
-					this.errorMessages.push(error)
-				}
-			}
 		}
 	},
 	computed: {
@@ -112,17 +76,16 @@ export default {
 }
 </script>
 <style>
-	h1.first-title {
-		text-align: center;
-		font-size: 36px;
-		font-weight: bold;
-	}
 	.item-list {
 		list-style: none;
 		text-align: left;
 		color: #fff;
 		padding: 1%;
 		background-color: #1abc9c;
+	}
+	.blue {
+		background-color: #fff;
+		color: #1abc9c;
 	}
 	.grey {
 		color: #1abc9c !important;
@@ -142,22 +105,11 @@ export default {
 		left: 0;
 		background: #34495e;
 	}
-	.blue {
-		background-color: #fff;
-		color: #1abc9c;
-	}
 	.btn-show {
 		width: 10rem;
 	}
 	.btn-show button {
 		color: #fff !important;
 		background: #1abc9c !important;
-	}
-	.list-errors li {
-		background: #ff5555;
-		color: #fff;
-		padding: 1%;
-		border-radius: 6px;
-		border: 2px solid #ff0000;
 	}
 </style>
