@@ -9,11 +9,13 @@ export const store = createStore({
 	},
 	mutations: {
 		ADD_PLAYER: (state, player) => {
-			if(!state.selection.includes(player)) {
+			if(!state.selection.includes(player) && state.counter < 11) {
 				state.counter += 1
 			}
 
-			state.selection.push(player);
+			if (state.selection.length < 12) {
+				state.selection.push(player);
+			}
 		},
 		REMOVE_PLAYER: (state, player) => {
 			if(state.counter > 0) {
@@ -27,6 +29,9 @@ export const store = createStore({
 		REMOVE_ALL: (state) => {
 			state.selection = [];
 			state.counter = 0;
+		},
+		GET_PSG_TEAM: (state, team) => {
+			state.players = team;
 		}
 	},
 	getters: {
@@ -43,6 +48,9 @@ export const store = createStore({
 		},
 		removeAll: (store) => {
 			store.commit('REMOVE_ALL');
+		},
+		getPSGTeam: (store, team) => {
+			store.commit('GET_PSG_TEAM', team);
 		}
 	}
 });

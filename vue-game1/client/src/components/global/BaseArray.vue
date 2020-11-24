@@ -1,22 +1,19 @@
 <template>
 	<div>
+		<p v-show="error !== ''" class="error">{{error}}</p>
 		<table v-show="players && players.length > 0" class="table-auto w-full base-array">
 			<thead>
 				<tr>
-					<th class="w-1/5">Name</th>
-					<th class="w-1/5">Position</th>
-					<th class="w-1/5">Country</th>
-					<th class="w-1/5">Health</th>
-					<th class="w-1/5">Actions</th>
+					<th class="w-1/3">Name</th>
+					<th class="w-1/3">Position</th>
+					<th class="w-1/3">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr v-for="(player, index) in players" :key="index" :class="[(index%2==0) ? 'green-line' : 'white-line']">
-					<td class="w-1/5 text-center">{{player.name}}</td>
-					<td class="w-1/5 text-center">{{player.position}}</td>
-					<td class="w-1/5 text-center">{{player.country}}</td>
-					<td class="w-1/5 text-center">{{player.health}}</td>
-					<td class="w-1/5 text-center">
+					<td class="w-1/3 text-center">{{player.name}}</td>
+					<td class="w-1/3 text-center">{{player.position}}</td>
+					<td class="w-1/3 text-center">
 						<base-button
 							v-show="title.length > 0 && title === 'players'"
 							title="Add"
@@ -29,7 +26,7 @@
 							:index="index"
 							@click="removeData(player)"
 						/>
-				</td>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -39,6 +36,11 @@
 import { mapActions } from 'vuex'
 export default {
 	name: "base-array",
+	data() {
+		return {
+			error: ""
+		}
+	},
 	props: {
 		players: Array,
 		title: String
@@ -49,11 +51,17 @@ export default {
 			removePlayer: 'removePlayer'
 		}),
 		addOne: function(player) {
+			this.error = ""
 			// Add an item in a list if doesn't exist
-			if (!this.$store.state.selection.includes(player)) {
-				this.addPlayer(player)
+			if (this.$store.state.selection.length < 12) {
+				if (!this.$store.state.selection.includes(player)) {
+					this.addPlayer(player)
+				}
+				this.counter = this.$store.state.selection.length;
+			} else {
+				this.error = "Vous avez atteint le cotat maximum de joueurs dans la selection"
+				window.scrollTo(0, 0);
 			}
-			this.counter = this.$store.state.selection.length;
 		},
 		removeData: function(player) {
 			// Remove an item accordting to the name
