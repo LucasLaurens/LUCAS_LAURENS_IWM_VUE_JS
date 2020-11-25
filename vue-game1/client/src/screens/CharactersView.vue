@@ -121,6 +121,7 @@ export default {
 		},
 		searchCharactere: function() {
 			let characters = [];
+			this.charactersFounded  = [];
 			this.is_search = false;
 			if( this.search && this.search.length > 0 ){
 				this.characters.map((item)=>{
@@ -161,6 +162,10 @@ export default {
 			return this.characters.sort((a,b)=>this.compare(val,a,b));
 		},
 		'search': function(val) {
+			if (val.length == 0) {
+				this.is_search = false;
+			}
+
 			if (val.length > 10) {
 				this.search = val.substring(0, val.length-1);
 			}
