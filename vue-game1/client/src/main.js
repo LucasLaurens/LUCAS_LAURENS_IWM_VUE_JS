@@ -23,3 +23,11 @@ app.component('base-array', BaseArray);
 
 // App Mounted
 app.mount('#app');
+
+
+
+
+// - Stats
+// - Nombre de perso par race
+// - Search bar
+// - Fix message error
