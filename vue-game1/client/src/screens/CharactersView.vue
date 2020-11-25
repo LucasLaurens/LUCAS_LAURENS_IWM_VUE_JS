@@ -19,6 +19,13 @@
 				:characters="characters"
 				title="characters"
 			/>
+
+			<base-button
+				class="mt-4 text-center btn-load-more"
+				title="Load More"
+				:index="index"
+				@click="loadMore"
+			/>
 		</div>
 	</div>
 </template>
@@ -67,6 +74,19 @@ export default {
 				}
 				return 0;
 			}
+		},
+		loadMore: async function() {
+			let number = this.characters.length + 3
+
+			try {
+				const result = await Character.datas(number);
+
+				if (result && result.length > 0) {
+					this.getCharactersSquad(result);
+				}
+			} catch (e) {
+				console.error(e)
+			}
 		}
 	},
 	computed: {
@@ -96,5 +116,9 @@ export default {
 	}
 	#character-view #options:focus {
 		outline: none;
+	}
+	#character-view .btn-load-more button {
+		background: #1abc9c;
+		color: #fff !important;
 	}
 </style>

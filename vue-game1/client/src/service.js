@@ -1,6 +1,6 @@
 import axios from 'axios'
 const Character = {
-	datas: async () => {
+	datas: async (number = 3) => {
 		try {
 			let array = []
 			let config = {
@@ -9,7 +9,7 @@ const Character = {
 				}
 			}
 
-			let response = await axios.get(`${process.env.VUE_APP_BASE_URL}character`, config);
+			let response = await axios.get(`${process.env.VUE_APP_BASE_URL}character?limit=${number}`, config);
 
 			response.data.docs.map(item => {
 				if (!array.includes(item)) {

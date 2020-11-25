@@ -30,6 +30,7 @@ export const store = createStore({
 			state.counter = 0;
 		},
 		GET_CHARACTERS_SQUAD: (state, characters) => {
+			state.characters = []
 			state.characters = [...state.characters, ...characters]
 		}
 	},
