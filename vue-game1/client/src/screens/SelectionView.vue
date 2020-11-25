@@ -61,7 +61,7 @@ export default {
 			let string = "";
 			if (this.selection && this.selection.length > 0) {
 				for(const [key, value] of Object.entries(this.countRaceOccurences(this.selection))) {
-					string += `tu possède : ${value} ${key} `;
+					string += `Tu possède : ${value} ${key} `;
 				}
 			}
 			return string;

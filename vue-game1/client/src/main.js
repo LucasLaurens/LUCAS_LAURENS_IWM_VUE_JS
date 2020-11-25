@@ -24,7 +24,4 @@ app.component('base-array', BaseArray);
 // App Mounted
 app.mount('#app');
 
-
-
-// - Search bar
 // - Fix message error
