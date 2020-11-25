@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p v-show="error !== ''" class="error">{{error}}</p>
+		<p v-show="$store.state.counter >= 11" class="error">Vous avez atteint le cotat maximum de joueurs dans la selection</p>
 		<table v-show="characters && characters.length > 0" class="table-auto w-full base-array">
 			<thead>
 				<tr>
@@ -51,22 +51,20 @@ export default {
 			removeCharacter: 'removeCharacter'
 		}),
 		addOne: function(character) {
-			this.error = ""
 			// Add an item in a list if doesn't exist
-			if (this.$store.state.selection.length < 12) {
+			if (this.$store.state.counter == 10) {
+				window.scrollTo(0, 0);
+			}
+			if (this.$store.state.counter < 11) {
 				if (!this.$store.state.selection.includes(character)) {
 					this.addCharacter(character)
 				}
-				this.counter = this.$store.state.selection.length;
-			} else {
-				this.error = "Vous avez atteint le cotat maximum de joueurs dans la selection"
-				window.scrollTo(0, 0);
 			}
 		},
 		removeData: function(character) {
+			this.error = "";
 			// Remove an item accordting to the name
-			this.removeCharacter(character)
-			this.counter = this.$store.state.selection.length;
+			this.removeCharacter(character);
 		},
 		characterPicked: function(character) {
 			return (this.$store.state.selection.find(item => item.name === character.name)) ? 'selected' : '';

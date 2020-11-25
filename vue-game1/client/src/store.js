@@ -10,9 +10,6 @@ export const store = createStore({
 		ADD_CHARACTER: (state, character) => {
 			if(!state.selection.includes(character) && state.counter < 11) {
 				state.counter += 1
-			}
-
-			if (state.selection.length < 12) {
 				state.selection.push(character);
 			}
 		},

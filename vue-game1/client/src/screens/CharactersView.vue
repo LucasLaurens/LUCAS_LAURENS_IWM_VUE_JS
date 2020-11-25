@@ -108,7 +108,6 @@ export default {
 		},
 		countRaceOccurences: function (tab){
 			var result = {};
-			console.log(tab)
 			tab.forEach(function(elem){
 				if(elem.race in result){
 					result[elem.race] = ++result[elem.race];
