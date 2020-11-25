@@ -3,7 +3,7 @@
 		<div class="mb-4">
 			<h2 class="second-title">characters</h2>
 			<h3 v-show="counter >= 11" class="success">Félicitation votre équipe est désormais au grand complet</h3>
-
+			<p>{{statsRace}}</p>
 			<div class="grid grid-cols-2">
 				<p>Nombre de personnages {{stringParse}} : {{counter}}/11</p>
 				<div>
@@ -23,7 +23,6 @@
 			<base-button
 				class="mt-4 text-center btn-load-more"
 				title="Load More"
-				:index="index"
 				@click="loadMore"
 			/>
 		</div>
@@ -87,6 +86,19 @@ export default {
 			} catch (e) {
 				console.error(e)
 			}
+		},
+		countRaceOccurences: function (tab){
+			var result = {};
+			console.log(tab)
+			tab.forEach(function(elem){
+				if(elem.race in result){
+					result[elem.race] = ++result[elem.race];
+				}
+				else{
+					result[elem.race] = 1;
+				}
+			});
+			return result;
 		}
 	},
 	computed: {
@@ -98,6 +110,16 @@ export default {
 		},
 		stringParse: function() {
 			return (this.counter && this.counter > 1) ? 'selectionnés' : 'selectionné'
+		},
+		statsRace: function() {
+			let string = "tu possède : ";
+			let selection = this.$store.state.selection;
+			if (selection && selection.length > 0) {
+				for(const [key, value] of Object.entries(this.countRaceOccurences(selection))) {
+					string += `${value} ${key}, `;
+				}
+			}
+			return string;
 		}
 	},
 	watch: {
