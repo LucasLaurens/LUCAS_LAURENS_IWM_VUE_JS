@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Import Main Components
-import PlayerView from './screens/PlayerView'
+import CharactersView from './screens/CharactersView'
 import SelectionView from './screens/SelectionView'
 
 // Routes
 const routes = [
-	{ path: '/', name: 'players', component: PlayerView },
+	{ path: '/', name: 'characters', component: CharactersView },
 	{ path: '/selection', name: 'selection', component: SelectionView }
 ];
 

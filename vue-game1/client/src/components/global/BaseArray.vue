@@ -1,30 +1,30 @@
 <template>
 	<div>
 		<p v-show="error !== ''" class="error">{{error}}</p>
-		<table v-show="players && players.length > 0" class="table-auto w-full base-array">
+		<table v-show="characters && characters.length > 0" class="table-auto w-full base-array">
 			<thead>
 				<tr>
 					<th class="w-1/3">Name</th>
-					<th class="w-1/3">Position</th>
+					<th class="w-1/3">Race</th>
 					<th class="w-1/3">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(player, index) in players" :key="index" :class="[(index%2==0) ? 'green-line' : 'white-line']">
-					<td class="w-1/3 text-center">{{player.name}}</td>
-					<td class="w-1/3 text-center">{{player.position}}</td>
+				<tr v-for="(character, index) in characters" :key="index" :class="[(index%2==0) ? 'green-line' : 'white-line']">
+					<td class="w-1/3 text-center">{{character.name}}</td>
+					<td class="w-1/3 text-center">{{getRace(character.race)}}</td>
 					<td class="w-1/3 text-center">
 						<base-button
-							v-show="title.length > 0 && title === 'players'"
+							v-show="title.length > 0 && title === 'characters'"
 							title="Add"
 							:index="index"
-							:class="[playerPicked(player)]"
-							@click="addOne(player)"
+							:class="[characterPicked(character)]"
+							@click="addOne(character)"
 						/>
 						<base-button
 							title="Remove"
 							:index="index"
-							@click="removeData(player)"
+							@click="removeData(character)"
 						/>
 					</td>
 				</tr>
@@ -42,20 +42,20 @@ export default {
 		}
 	},
 	props: {
-		players: Array,
+		characters: Array,
 		title: String
 	},
 	methods: {
 		...mapActions({
-			addPlayer: 'addPlayer',
-			removePlayer: 'removePlayer'
+			addCharacter: 'addCharacter',
+			removeCharacter: 'removeCharacter'
 		}),
-		addOne: function(player) {
+		addOne: function(character) {
 			this.error = ""
 			// Add an item in a list if doesn't exist
 			if (this.$store.state.selection.length < 12) {
-				if (!this.$store.state.selection.includes(player)) {
-					this.addPlayer(player)
+				if (!this.$store.state.selection.includes(character)) {
+					this.addCharacter(character)
 				}
 				this.counter = this.$store.state.selection.length;
 			} else {
@@ -63,13 +63,16 @@ export default {
 				window.scrollTo(0, 0);
 			}
 		},
-		removeData: function(player) {
+		removeData: function(character) {
 			// Remove an item accordting to the name
-			this.removePlayer(player)
+			this.removeCharacter(character)
 			this.counter = this.$store.state.selection.length;
 		},
-		playerPicked: function(player) {
-			return (this.$store.state.selection.find(item => item.name === player.name)) ? 'selected' : '';
+		characterPicked: function(character) {
+			return (this.$store.state.selection.find(item => item.name === character.name)) ? 'selected' : '';
+		},
+		getRace: function(race) {
+			return (!isNaN(race) || race === 'NaN') ? 'Pas attribué' : race
 		}
 	}
 }

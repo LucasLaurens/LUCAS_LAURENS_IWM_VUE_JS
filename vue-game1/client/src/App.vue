@@ -5,7 +5,7 @@
       <router-link to="/">Players</router-link>
       <router-link to="/selection">Selection</router-link>
     </div>
-    <h1 class="first-title">Equipe : PSG</h1>
+    <h1 class="first-title">Lord Of The Ring Characters</h1>
     <router-view></router-view>
   </div>
 </template>

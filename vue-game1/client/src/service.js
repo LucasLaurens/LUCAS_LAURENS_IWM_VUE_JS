@@ -1,18 +1,27 @@
 import axios from 'axios'
-const Teams = {
+const Character = {
 	datas: async () => {
 		try {
-			const response = await axios.get('http://api.football-data.org/v2/teams/524', {
+			let array = []
+			let config = {
 				headers: {
-					'X-Auth-Token': process.env.VUE_APP_API_TOKEN
+					'Authorization': `Bearer ${process.env.VUE_APP_API_TOKEN}`
 				}
-			});
+			}
 
-			return response.data.squad
+			let response = await axios.get(`${process.env.VUE_APP_BASE_URL}character`, config);
+
+			response.data.docs.map(item => {
+				if (!array.includes(item)) {
+					array.push(item)
+				}
+			})
+
+			return array;
 		} catch (err) {
 			console.error(err);
 		}
 	},
 }
 
-export default Teams;
+export default Character;

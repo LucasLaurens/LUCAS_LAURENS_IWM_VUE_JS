@@ -3,7 +3,7 @@
 		<h2 class="second-title">Selection</h2>
 		<div class="m-2">
 			<h3 v-show="counter >= 11" class="success">Félicitation votre équipe est désormais au grand complet</h3>
-			<p>Nombre de joueurs {{stringParse}} : {{counter}}/11</p>
+			<p>Nombre de personnages {{stringParse}} : {{counter}}/11</p>
 			<base-button
 				class="btn-remove-all m-2"
 				title="Remove All"
@@ -11,7 +11,7 @@
 			/>
 			<base-array
 				v-show="selection && selection.length > 0"
-				:players="selection"
+				:characters="selection"
 				title="selection"
 			/>
 		</div>
